@@ -1,7 +1,7 @@
 def runParallelStages(def stages) {
     def parallelStages = [:]
     for (e in environments) {
-        deployments[e] = {
+        parallelStages[e] = {
             stage(e) {
                 echo "Esecuzione dello stage ${stageName}"
             }
