@@ -1,4 +1,4 @@
-def runParallelStages(def stages) {
+/*def runParallelStages(def stages) {
     def parallelStages = [:]
     for (e in environments) {
         parallelStages[e] = {
@@ -8,9 +8,9 @@ def runParallelStages(def stages) {
         }
     }
     parallel parallelStages
-}
+}*/
 
-/*def environments = ["development", "staging", "production"]
+def environments = ["development", "staging", "production"]
 
 stage("deploy to multiple environments") {
     def deployments = [:]
@@ -22,4 +22,4 @@ stage("deploy to multiple environments") {
         }
     }
     parallel deployments
-}*/
+}
