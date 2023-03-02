@@ -6,7 +6,7 @@ def incrementVersion(String version) {
     patch += 1 // incrementa il numero di versione di patch
     return "${major}.${minor}.${patch}"
 
-    echo "La nuova versione è: ${major}
+    echo "La nuova versione è: ${major}"
 }
 
 //def incrementVersion(version) {
