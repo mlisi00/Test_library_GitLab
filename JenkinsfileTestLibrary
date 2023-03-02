@@ -1,4 +1,4 @@
-@Library('GitLibrary')_
+@Library('GitLibraryGitHub')_
 
 pipeline {
     agent any
