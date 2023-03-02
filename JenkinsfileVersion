@@ -9,10 +9,11 @@ pipeline {
         stage('Increment Version') {
             steps {
                 script {
-                    def newVersion = incrementVersion(PROJECT_VERSION)
+                    def version = env.PROJECT_VERSION
+                    incrementVersion(version)
 
-                    echo "La vecchia versione era: ${PROJECT_VERSION}"
-                    echo "La nuova versione è: ${newVersion}"
+                    echo "La vecchia versione era: ${version}"
+                    //echo "La nuova versione è: ${newVersion}"
                 }
             }
         }

@@ -5,6 +5,8 @@ def incrementVersion(String version) {
     def patch = Integer.parseInt(parts[2])
     patch += 1 // incrementa il numero di versione di patch
     return "${major}.${minor}.${patch}"
+
+    echo "La nuova versione è: ${major}
 }
 
 //def incrementVersion(version) {
