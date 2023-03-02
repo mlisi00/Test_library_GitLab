@@ -1,12 +1,12 @@
 def incrementVersion(String version) {
     def parts = version.split("\\.")
-    def major = Integer.parseInt(parts[0])
+/*    def major = Integer.parseInt(parts[0])
     def minor = Integer.parseInt(parts[1])
     def patch = Integer.parseInt(parts[2])
-    patch += 1 // incrementa il numero di versione di patch
-    return "${major}.${minor}.${patch}"
+    patch += 1
+    return "${major}.${minor}.${patch}"*/
 
-    echo "La nuova versione è: ${major}"
+    echo "La nuova versione è: ${parts}"
 }
 
 //def incrementVersion(version) {
