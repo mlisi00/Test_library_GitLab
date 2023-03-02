@@ -1,0 +1,73 @@
+@Library('GitLibrary').incrementVersion
+
+pipeline {
+    agent any
+        environment {
+            PROJECTNAME = 'IPZS-JAVA'
+            DEPENDENCY_TRACK_API_KEY = credentials('db3c0de9-d4f8-4d09-92c5-720841acec8e')
+            PROJECT_VERSION = '1.0.0'
+            BOM_FILE_PATH = 'sbom.json'
+            SYNCHRONOUS = true
+        }
+    stages {
+        stage('Prepare') {
+            steps {
+                script {
+                    echo 'Notify GitLab'
+                    updateGitlabCommitStatus name: 'Prepare', state: 'pending'
+                    updateGitlabCommitStatus name: 'Prepare', state: 'success'
+                }
+            }
+        }
+        stage('Git Leaks analisys') {
+            steps {
+                script {
+                    updateGitlabCommitStatus name: 'Git Leaks analisys', state: 'pending'
+                    try {
+                        sh 'gitleaks detect -v -r gitleaks.json'
+                        updateGitlabCommitStatus name: 'Git Leaks analisys', state: 'success'
+                    } catch (err) {
+                        updateGitlabCommitStatus name: 'Git Leaks analisys', state: 'failed'
+                    }
+                }
+            }
+        }
+        stage('SAST Analysis') {
+            parallel{
+                stage('Secrets Auditing'){
+                    steps {
+                        //dir ("${DIRECTORY_NAME}") {
+                        sh 'gitleaks detect -v -f json -r report-gitleaks.json'
+                        //}
+                    }
+                }
+                stage('Static Code Analysis'){
+                    steps {
+                        //dir ("${DIRECTORY_NAME}") {
+                        sh 'spotbugs -textui -effort:max -pluginList /var/opt/spotbugs-4.7.3/plugin/findsecbugs.jar -output report-spotbugs.json .'
+                        //}
+                    }
+                }
+                stage('SBOM Generation and Analysis'){
+                    steps {
+                        //dir ("${DIRECTORY_NAME}") {
+                        sh '''
+                            syft packages . -o cyclonedx-json > sbom.json;
+                            grype sbom:./sbom.json -o cyclonedx-json > report-sbom.json;
+                            '''
+						env.projectVersion=incrementVersion("$PROJECT_VERSION")
+                        dependencyTrackPublisher artifact: "$BOM_FILE_PATH", projectName: "$PROJECTNAME", projectVersion: "$projectVersion", synchronous: "$SYNCHRONOUS", dependencyTrackApiKey: "${DEPENDENCY_TRACK_API_KEY}", projectProperties: [tags: 'test']
+                        //}
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            script {
+                println('EMAIL HERE')
+            }
+        }
+    }
+}
