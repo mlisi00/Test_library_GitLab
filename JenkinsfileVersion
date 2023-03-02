@@ -10,10 +10,10 @@ pipeline {
             steps {
                 script {
                     def version = env.PROJECT_VERSION
-                    checkversion(version)
+                    def newVersion = fun.incrementVersion(version)
 
-                    //echo "La vecchia versione era: ${version}"
-                    //echo "La nuova versione è: ${newVersion}"
+                    echo "La vecchia versione era: ${version}"
+                    echo "La nuova versione è: ${newVersion}"
                 }
             }
         }

@@ -1,18 +1,16 @@
-def checkversion(String version)  {
+/*def checkversion(String version)  {
 
     echo "La  versione è: ${version}"
-}
+}*/
 
-/*def incrementVersion(String version) {
+def incrementVersion(String version) {
     def parts = version.split("\\.")
     def major = Integer.parseInt(parts[0])
     def minor = Integer.parseInt(parts[1])
     def patch = Integer.parseInt(parts[2])
     patch += 1
-    return "${major}.${minor}.${patch}"*//*
-
-    echo "La nuova versione è: ${parts}"
-}*/
+    return "${major}.${minor}.${patch}"
+}
 
 /*def incrementVersion(version) {
     def matcher = version =~ /(\d+)\.(\d+)\.(\d+)/
