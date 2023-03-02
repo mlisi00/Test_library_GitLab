@@ -1,4 +1,4 @@
-@Library('GitLibrary').incrementVersion
+@Library('GitLibraryGitHub')_
 
 pipeline {
     agent any
