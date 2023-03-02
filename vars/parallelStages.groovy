@@ -1,6 +1,6 @@
-def runParallelStages() {
+def runParallelStages(agent) {
     pipeline {
-        agent any
+        agent agent
         stages {
             stage('Parallel Stages') {
                 parallel {
