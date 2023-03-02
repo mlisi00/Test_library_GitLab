@@ -1,0 +1,28 @@
+@Library('GitLibraryGitHub') _
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Parallel Stages') {
+            parallel {
+                stage('Primo calcolo') {
+                    steps {
+                        script {
+                            def result = sum.sum(3, 4)
+                            echo "Il risultato della somma è ${result}"
+                        }
+                    }
+                }
+                stage('Secondo calcolo') {
+                    steps {
+                        script {
+                            def result = sum.sum(5, 6)
+                            echo "Il risultato della somma è ${result}"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
