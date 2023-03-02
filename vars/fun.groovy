@@ -1,8 +1,3 @@
-/*def checkversion(String version)  {
-
-    echo "La  versione è: ${version}"
-}*/
-
 def incrementVersion(String version) {
     def parts = version.split("\\.")
     def major = Integer.parseInt(parts[0])
