@@ -55,8 +55,10 @@ pipeline {
                             syft packages . -o cyclonedx-json > sbom.json;
                             grype sbom:./sbom.json -o cyclonedx-json > report-sbom.json;
                             '''
-                        def projectversion = env.PROJECT_VERSION
-                        def newVersion = fun.incrementVersion(version)
+                        script {
+                            def projectversion = env.PROJECT_VERSION
+                            def newVersion = fun.incrementVersion(version)
+                        }
 
                         dependencyTrackPublisher artifact: "$BOM_FILE_PATH", projectName: "$PROJECTNAME", projectVersion: "newVersion", synchronous: "$SYNCHRONOUS", dependencyTrackApiKey: "${DEPENDENCY_TRACK_API_KEY}", projectProperties: [tags: 'test']
                         //}
