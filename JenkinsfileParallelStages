@@ -7,9 +7,7 @@ pipeline {
         stage('Parallel Stages') {
             steps {
                 script {
-                    //def stages = ['stage1', 'stage2', 'stage3']
-                    def environments = ["development", "staging", "production"]
-                    parallelStages.runParallelStages(environments)
+                    parallelStages.runParallelStages()
                 }
             }
         }
