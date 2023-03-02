@@ -1,0 +1,20 @@
+@Library('GitLibraryGitHub') _
+
+pipeline {
+    agent any
+        environment {
+            PROJECT_VERSION = '1.0.0'
+        }
+    stages {
+        stage('Increment Version') {
+            steps {
+                script {
+                    def newVersion = incrementVersion(PROJECT_VERSION)
+
+                    echo "La vecchia versione era: ${PROJECT_VERSION}"
+                    echo "La nuova versione è: ${newVersion}"
+                }
+            }
+        }
+    }
+}
