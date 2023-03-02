@@ -20,4 +20,4 @@ def runParallelStages() {
     }
 }
 
-runParallelStages()
+parallelStages.runParallelStages()
