@@ -1,0 +1,16 @@
+@Library('GitLibraryGitHub') _
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Parallel Stages') {
+            steps {
+                script {
+                    def stages = ['stage1', 'stage2', 'stage3']
+                    parallelStages.runParallelStages(stages)
+                }
+            }
+        }
+    }
+}
