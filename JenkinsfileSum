@@ -8,6 +8,9 @@ pipeline {
             parallel {
                 stage('Primo calcolo') {
                     steps {
+                        echo "Il Jenkinsfile è archiviato nel repository: ${GIT_URL}"
+                        def jenkinsfileRepoURl = ${GIT_URL}
+                        println(jenkinsfileRepoURl)
                         script {
                             def result = sum.sum(3, 4)
                             echo "Il risultato della somma è ${result}"
