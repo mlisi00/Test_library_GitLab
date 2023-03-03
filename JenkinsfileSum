@@ -25,7 +25,10 @@ pipeline {
                 stage('Test function') {
                     steps {
                         script {
-                            environment.testFunction(DEV: dev)
+                            def env = 'dev'
+                            def result = environment.testFunction(env)
+                            def projecta = result[0]
+                            def projectb = result[1]
                             echo "projecta: ${projecta}"
                             echo "projectb: ${projectb}"
                         }
