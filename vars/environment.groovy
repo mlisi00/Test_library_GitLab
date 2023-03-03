@@ -9,5 +9,3 @@ def testFunction(envTarget) {
     }
     return [projecta, projectb]
 }
-
-println(testFunction(DEV: dev))
