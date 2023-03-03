@@ -2,15 +2,15 @@
 
 pipeline {
     agent any
-
+    environment {
+        GIT_URL = sh(returnStdout: true, script: 'git config --get remote.origin.url').trim()
+    }
     stages {
         stage('Parallel Stages') {
             parallel {
                 stage('Primo calcolo') {
                     steps {
                         echo "Il Jenkinsfile è archiviato nel repository: ${GIT_URL}"
-                        //def jenkinsfileRepoURl = ${GIT_URL}
-                        //println(jenkinsfileRepoURl)
                         script {
                             def result = sum.sum(3, 4)
                             echo "Il risultato della somma è ${result}"
@@ -20,6 +20,7 @@ pipeline {
                 stage('Secondo calcolo') {
                     steps {
                         script {
+                            echo "Il Jenkinsfile è archiviato nel repository: ${GIT_URL}"
                             def result = sum.sum(5, 6)
                             echo "Il risultato della somma è ${result}"
                         }
