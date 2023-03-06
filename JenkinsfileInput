@@ -14,7 +14,7 @@ pipeline {
         ok "Sì, esegui il deploy"
       }
       steps {
-        "Questo è lo stage di Deploy"
+       echo "Questo è lo stage di Deploy"
       }
     }
   }
