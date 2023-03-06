@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        // esegui il build
+       echo "Questo è lo stage di Build"
       }
     }
 
@@ -14,7 +14,7 @@ pipeline {
         ok "Sì, esegui il deploy"
       }
       steps {
-        // esegui il deploy
+        "Questo è lo stage di Deploy"
       }
     }
   }
