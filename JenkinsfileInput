@@ -1,0 +1,21 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        // esegui il build
+      }
+    }
+
+    stage('Deploy') {
+      input {
+        message "Vuoi eseguire il deploy?"
+        ok "Sì, esegui il deploy"
+      }
+      steps {
+        // esegui il deploy
+      }
+    }
+  }
+}
