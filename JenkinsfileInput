@@ -10,8 +10,8 @@ pipeline {
 
     stage('Deploy') {
       input {
-        message "Vuoi eseguire il deploy?"
-        ok "Sì, esegui il deploy"
+        message "Vuoi procedere"
+        ok "Proceed"
       }
       steps {
        echo "Questo è lo stage di Deploy"
